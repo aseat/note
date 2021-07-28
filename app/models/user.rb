@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          with_options presence: true do
           validates :creator
-          validates :noteid, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/, message: 'Include both letters and numbers' }
-          validates :encrypted_password, :password, length: { minimum: 8 }, format: { with: /\A[\w@-]*[A-Za-z][:-@¥[-`{-~]+$]*\z/ , message: 'Include both letters and numbers' }
+          validates :noteid, format: { with: /\A[a-zA-Z0-9_]{3,16}\z/, message: 'は3文字以上〜16文字以内で入力してください。' }
+          validates :encrypted_password, :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d[!-\/:-@\[-`{-~\d])[!-~\d]{8,}+\z/, message: 'は8文字以上で入力してください。', message: 'は半角英数記号で入力してください。'  }
         end
 end

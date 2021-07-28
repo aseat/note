@@ -5,18 +5,18 @@
 
 <div class="field">
         <%= f.label "クリエイター名（noteで表示される名前です）" %> <br />
-        <%= f.text_field :creator %>
+        <%= f.text_field :creator ,placeholder:"noteさん"%>
       </div>
 
       <div class="field">
         <%= f.label "note ID（あなたのURLに使われます）" %> <br />
-        <%= f.label "3〜16文字の半角英数字・_（アンダースコア）" %><br />
-        <%= f.text_field :noteid %>
+        <%= f.label "3〜16文字の半角英数字＿（アンダースコア）" %><br />
+        <%= f.text_field :noteid , placeholder:"noteid"%>
       </div>
 
   <div class="field">
     <%= f.label "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"mail@example" %>
   </div>
 
   <div class="field">

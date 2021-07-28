@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        creator: ニックネーム
+        noteid: note ID
+        password: パスワード
+        email: メールアドレス
