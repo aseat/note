@@ -1,0 +1,9 @@
+.square{
+border: 1px solid;
+border-color: black;
+width: 300px;
+padding: 1px;
+}
+.field{
+  font-size: 14px;
+}
