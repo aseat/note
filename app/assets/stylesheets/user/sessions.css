@@ -1,0 +1,30 @@
+.form1{
+  font-size: 12px;
+  color: gray;
+}
+.square2 {
+  box-sizing: border-box;
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+.fontcenter{
+  text-align: center;
+  font-size: large;
+  font-weight: bold; 
+}
+.btn-outline-secondary3 {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 3%;
+  background-color: rgb(3, 170, 120);
+  width: 40%;
+  height: 30px;
+  text-align:center;
+}
+.actions{
+  text-align:center;
+}
