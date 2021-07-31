@@ -2,7 +2,7 @@ ja:
   activerecord:
     attributes:
       user:
-        creator: ニックネーム
+        creator: クリエイター名
         noteid: note ID
-        password: パスワード
         email: メールアドレス
+        password: パスワード

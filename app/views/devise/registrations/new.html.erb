@@ -1,5 +1,4 @@
-<%= render "devise/shared/header" %>
-<div class="back">
+<%= render "devise/shared/login" %>
 <div class="square">
 
 <div class="introduction">
@@ -10,11 +9,7 @@
 <p>いっしょに、創作の輪を広げていきましょう。</p>
 </div>
 </div>
-
-
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= form_with model: @user,url:user_registration_path, class: 'registration-main', local: true do |f| %>
   <div class="signup__form">
 <h2 class="fontcenter">noteに登録する</h2><p>
       <div class="field">
@@ -24,7 +19,7 @@
 
       <div class="field">
         <%= f.label "note ID（あなたのURLに使われます）" %> <br />
-        <div class="field1"><%= f.label "3〜16文字の半角英数字＿（アンダースコア）" ,class:"form1"%><br />
+        <div class="field1"><%= f.label "3〜16文字の半角英数字・＿（アンダースコア）" ,class:"form1"%><br />
         <%= f.text_field :noteid , placeholder:"noteid",class:"form",type:"text"%>
       </div>
       </div>
@@ -37,9 +32,10 @@
   <div class="field">
     <%= f.label "パスワード" %> <br />
       <div class="field1"><%= f.label "8文字以上の半角英数記号",class:"form1" %><br />
-    <%= f.password_field :password, autocomplete: "new-password",class:"form",type:"text" %>
+    <%= f.password_field :password, autocomplete: "new-password",class:"form",type:"password" %>
   </div>
   </div>
+  <%= render 'devise/shared/error_messages', resource: @user %>
 <p>
   <div class="actions">
     <%= f.submit "登録する（無料）" ,class:"btn-outline-secondary2"%>
@@ -47,5 +43,6 @@
 <% end %>
 </div>
 </div>
+  <div class="back">
 </div>
 </div>

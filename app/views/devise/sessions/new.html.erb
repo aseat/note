@@ -1,4 +1,5 @@
-<%= render "devise/shared/header" %>
+<%= render "devise/shared/login" %>
+<div class="back">
 <div class="square2">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="signup__form">
@@ -10,9 +11,12 @@
 
   <div class="field">
     
-    <%= f.password_field :password, autocomplete: "new-password",placeholder:"パスワード",class:"form",type:"text" %>
+    <%= f.password_field :password, autocomplete: "new-password",placeholder:"パスワード",class:"form",type:"password" %>
   </div>
- 
+<p>
+<div class="alert">
+<%= alert %>
+</div>
 <p>
   <div class="actions">
     <%= f.submit "ログイン" ,class:"btn-outline-secondary3"%>
@@ -21,6 +25,4 @@
   </div>
 <% end %>
 </div>
-<%= image_tag '新規登録&ログイン下部.png',width:"100%",height:"50%" %>
-
-
+</div>
