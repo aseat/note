@@ -7,10 +7,10 @@
        <%= link_to image_tag("note.png",width:"120px",height:"45px"), root_path%> 
       </div>
 <%= form_with model: @tweet, local: true do |f| %>
-       <div class="col-4 d-flex justify-content-end align-items-center" style="width: 100%;">
-        <%=link_to 'キャンセル', root_path, class:"btn btn-sm btn-outline-secondary1" %>
-         <%= f.submit "投稿",class:"btn btn-sm btn-outline-secondary1"%>
-    </div>
+      <a class="col-4 d-flex justify-content-end align-items-center"">
+        <%=link_to 'キャンセル', root_path, class:"btn btn-sm btn-outline-secondary4",style:"" %>
+         <%= f.submit "投稿",class:"btn btn-sm btn-outline-secondary4"%>
+    </a>
    </div>
 </header>
 <div class="field form-group">
