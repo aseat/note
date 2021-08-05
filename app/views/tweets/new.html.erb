@@ -1,2 +1,23 @@
+<!DOCTYPE html>
+<header>
+<div class="container">
+  <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-4 ">
+       <%= link_to image_tag("note.png",width:"120px",height:"45px"), root_path%> 
+      </div>
 <%= form_with model: @tweet, local: true do |f| %>
+       <div class="col-4 d-flex justify-content-end align-items-center" style="width: 100%;">
+        <%=link_to 'キャンセル', root_path, class:"btn btn-sm btn-outline-secondary1" %>
+         <%= f.submit "投稿",class:"btn btn-sm btn-outline-secondary1"%>
+    </div>
+   </div>
+</header>
+<div class="field form-group">
+          <%= f.text_area :name, placeholder:"記事タイトル",id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"10", cols:"60" %>
+      </div>
+      <p>
+        <div class="field form-group">
+            <%= f.text_area :title, id:"inputFile",placeholder:"こんばんは。今日もお疲れ様です。",class:"form-control2" ,type:"text", id:"article_title",rows:"10", cols:"60" %>
+        </div>
 <% end %>

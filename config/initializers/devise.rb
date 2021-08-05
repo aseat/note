@@ -100,7 +100,7 @@ Devise.setup do |config|
   config.skip_session_storage = [:http_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
-  # avoid CSRF token fixation attacks. This means that, when using AJAX
+  # avoid CSRF token fixation attacks. This titles that, when using AJAX
   # requests for sign in and sign up, you need to get a new CSRF token
   # from the server. You can disable this option at your own risk.
   # config.clean_up_csrf_token_on_authentication = true
@@ -141,7 +141,7 @@ Devise.setup do |config|
   # access will be blocked just in the third day.
   # You can also set it to nil, which will allow the user to access the website
   # without confirming their account.
-  # Default is 0.days, meaning the user cannot access the website without
+  # Default is 0.days, titleing the user cannot access the website without
   # confirming their account.
   # config.allow_unconfirmed_access_for = 2.days
 
@@ -149,7 +149,7 @@ Devise.setup do |config|
   # token becomes invalid. For example, if set to 3.days, the user can confirm
   # their account within 3 days after the mail was sent, but on the fourth day
   # their account can't be confirmed with the token any more.
-  # Default is nil, meaning there is no restriction on how long a user can take
+  # Default is nil, titleing there is no restriction on how long a user can take
   # before confirming their account.
   # config.confirm_within = 3.days
 
