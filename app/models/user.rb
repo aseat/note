@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         has_many :tweets
          with_options presence: true do
           validates :creator
           validates :noteid, format: { with: /\A[a-zA-Z0-9_]{3,16}\z/, message: 'は3文字以上〜16文字以内で入力してください。' }
