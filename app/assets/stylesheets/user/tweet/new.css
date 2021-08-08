@@ -38,3 +38,32 @@
   border-color: black;
   font-weight: 700;
 }
+.center{
+    margin-left: auto;
+    margin-right: auto;
+    width: 40em
+}
+.upload-img-btn {
+margin-bottom: 20%;
+}
+.t-wrapper--with_sideMenu{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 24px 0 16px;
+    margin: 0 auto;
+}
+.t-wrapper--with_sideMenu .t-wrapper__sideMenu[data-v-1a3d1614] {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 192px;
+  height: 100%;
+  max-height: 100vh;
+  padding-top: 24px;
+  padding-right: 16px;
+  padding-bottom: 24px;
+  margin-right: 16px;
+  overflow-y: auto;
+}

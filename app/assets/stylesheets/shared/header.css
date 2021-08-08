@@ -56,7 +56,6 @@
   font-size: 1.25rem;
   border-radius: 0.3rem;
 }
-
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -69,12 +68,12 @@
   color: black;
 }
 .btn-outline-secondary1 {
-  color: white;
-  background-color: #12e985;
+  color: white !important;
+  background-color: #12e985 !important;
 }
 .btn-outline-secondary1:hover {
-  color: white;
-  background-color: gray;
+  color: white !important;
+  background-color: gray !important;
 }
 .align-items-center {
   align-items: center !important;

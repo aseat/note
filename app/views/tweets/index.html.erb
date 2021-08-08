@@ -1,1 +1,14 @@
 <%= render "devise/shared/header" %>
+<div class="t-wrapper t-wrapper--with_sideMenu">
+<div class="t-wrapper__sideMenu">
+<div class="t-container__body">
+<div class>
+<% @tweet.each do |tweet| %>
+<div class="card-text">
+<%= link_to tweet.title,tweet_path(tweet.id) %>
+<%= link_to tweet.text,tweet_path(tweet.id) %>
+<% end %>
+</div>
+</div>
+</div>
+</div>
