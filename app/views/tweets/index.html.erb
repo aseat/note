@@ -1,14 +1,23 @@
 <%= render "devise/shared/header" %>
-<div class="t-wrapper t-wrapper--with_sideMenu">
-<div class="t-wrapper__sideMenu">
-<div class="t-container__body">
-<div class>
+<div class="center" style="padding-left: 25%; width: 60%; ">
 <% @tweet.each do |tweet| %>
-<div class="card-text">
-<%= link_to tweet.title,tweet_path(tweet.id) %>
-<%= link_to tweet.text,tweet_path(tweet.id) %>
+<div class="cards" style="width: 35%; ">
+<div class="cardimage">
+<% if tweet.image.attached? %>
+<%= link_to image_tag(tweet.image,class:"m-largeNoteWrapper__image",width:"100%",height:"100%"),tweet_path(tweet.id) %>
+<% else %>
+<%= link_to image_tag("画像.png",class:"m-largeNoteWrapper__image",width:"100%",height:"100%"),tweet_path(tweet.id) %>
 <% end %>
 </div>
+<p> 
+<div class="cardtext">
+<%= link_to tweet.title,tweet_path(tweet.id),style:"text-decoration: none; font-weight: 800; font-size: 20px; color: black; " %>
 </div>
+<p> 
+<div class="cardtext">
+<%= link_to tweet.text,tweet_path(tweet.id),style:"text-decoration: none; " %>
 </div>
+</p>
+</div>
+<% end %>
 </div>

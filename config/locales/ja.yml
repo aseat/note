@@ -6,3 +6,6 @@ ja:
         noteid: note ID
         email: メールアドレス
         password: パスワード
+      article:
+        title: タイトル
+        body: 本文

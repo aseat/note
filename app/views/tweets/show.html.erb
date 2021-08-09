@@ -1,9 +1,16 @@
-<div class="card-text">
+<%= render "devise/shared/header" %>
+<div class="card-text" style="padding-left: 30%;">
 <% if @tweet.image.attached? %>
-<%= image_tag @word.image,width:"300px",height:"300px" %>
+<%= image_tag @tweet.image,width:"40%",height:"20%" %>
+<% else %>
+<%= image_tag("画像.png",class:"m-largeNoteWrapper__image",width:"60%",height:"100%") %>
 <% end %>
-<%=  @tweet.title %>
-<%=  @tweet.text %>
+<br><div class="cardtitle" style="text-decoration: none; font-weight: 800; font-size: 20px; color: black; ">
+<%=  @tweet.title %></div>
+<br>
+<div class="cardtext" style="text-decoration: none;" >
+<%=  @tweet.text %></div>
+<br>
 <div class="album py-5 bg-light" style="width: 240px;height: 64px;padding-left: 16px;">
 <%= link_to '戻る', root_path, method: :get, class: "btn btn-sm btn-outline-secondary" %>
 <% if user_signed_in? && current_user.id == @tweet.user.id %>

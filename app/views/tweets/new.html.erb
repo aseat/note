@@ -8,10 +8,9 @@
       </div>
       </header>
 <%= form_with model: @tweet, local: true do |f| %>
-<div class="center">
+<div class="center" style="padding-left: 30%;">
 <label class="upload-img-btn">
-   <%= image_tag("画像アイコン.png",width:"80px",height:"60px")%>
-    <input type="file" name="image" style="display:none">
+   <%= f.file_field :image, id:"inputFile",style:"background-image:url(画像アイコン.png);"%>
 </label>
 <div class="field form-group">
           <%= f.text_area :title, placeholder:"記事タイトル",id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"4", cols:"30",style:"border: 0px none; font-size: 40px;" %>

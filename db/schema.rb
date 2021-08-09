@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_31_110138) do
+ActiveRecord::Schema.define(version: 2021_08_08_131915) do
 
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2021_07_31_110138) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "articles", charset: "utf8", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
   create_table "tweets", charset: "utf8", force: :cascade do |t|
     t.string "title"
     t.text "text"
@@ -65,5 +74,6 @@ ActiveRecord::Schema.define(version: 2021_07_31_110138) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "users"
   add_foreign_key "tweets", "users"
 end

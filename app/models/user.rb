@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          has_many :tweets
+         has_many :articles
          with_options presence: true do
           validates :creator
           validates :noteid, format: { with: /\A[a-zA-Z0-9_]{3,16}\z/, message: 'は3文字以上〜16文字以内で入力してください。' }
