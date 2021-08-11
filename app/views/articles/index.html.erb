@@ -1,5 +1,5 @@
 <%= render "devise/shared/header" %>
-<div id="cardlayout-wrap"><!-- カードレイアウトをラッピング -->
+<div id="cardlayout-wrap">
    <% @article.each do |article| %>
     <section class="card-list">
         <a class="card-link" href="#">
@@ -10,8 +10,8 @@
 <% end %></figure>
             <h2 class="card-title"><%= link_to article.title,article_path(article.id),style:"text-decoration: none; font-weight: 800; font-size: 20px; color: black; " %></h2>
             <p>
-            <p class="card-text-tax"><%= link_to article.body,article_path(article.id),style:"text-decoration: none;"%></p>
+         
         </a>
     </section>
     <% end %>
-</div><!-- カードレイアウトをラッピング -->
+</div>
