@@ -1,10 +1,5 @@
-x=0
-y=0
-z=0
-d=0
-
-
-
-d=x+y+z
-
-put d.counts 
+input_line = gets.to_i
+input_line.times do
+  s = gets.chomp.split(" ")
+  print "hello = #{ s[0] } , world = #{ s[1] }\n"
+end

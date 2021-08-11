@@ -24,7 +24,7 @@ class TweetsController < ApplicationController
       @tweet = Tweet.create(tweet_params)
       if @tweet.save
 
-        redirect_to tweets_path
+        redirect_to root_path
       else
         render :edit
       end
