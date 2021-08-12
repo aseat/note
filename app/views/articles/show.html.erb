@@ -8,13 +8,13 @@
 <%= image_tag("画像.png",class:"m-largeNoteWrapper__image",width:"60%",height:"100%") %>
 <% end %>
 <br><div class="cardtitle" style="text-decoration: none; font-weight: 800; font-size: 20px; color: black; ">
-<%=  @article.title %></div>
+<%=  markdown(@article.title).html_safe %></div>
 <br>
                 <%=image_tag("画像.png",width:"30px",height:"30px",style:"border-radius: 50%") %>
                 <%= @article.user.creator %>
                 <br>
                 <%= l @article.created_at %>
-<div class="cardtext" style="text-decoration: none;" >
+<div class="cardtext"  >
   <%= markdown(@article.body).html_safe %></div>
 <br>
 <div class="album py-5 bg-light" style="width: 240px;height: 64px;padding-left: 16px;">

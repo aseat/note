@@ -1,11 +1,11 @@
 input_line = gets.to_i
 input_line.times do
-  s = gets.chomp.split(" ")
-  print "hello = #{ s[0] } , world = #{ s[1] }\n"
+  s = gets.chomp.split(' ')
+  print "hello = #{s[0]} , world = #{s[1]}\n"
 end
 
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :set_article, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: [:index, :show]
   # GET /articles or /articles.json
   def index
@@ -23,9 +23,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    unless @article.user == current_user
-      redirect_to  root_path
-    end
+    redirect_to root_path unless @article.user == current_user
   end
 
   # POST /articles or /articles.json
@@ -34,7 +32,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to root_path, notice: "Article was successfully created." }
+        format.html { redirect_to root_path, notice: 'Article was successfully created.' }
         format.json { render :index, status: :created, location: @article }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -48,16 +46,16 @@ class ArticlesController < ApplicationController
     if @article.user != current_user
       redirect_to  root_path
     else
-    respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to @article, notice: "Article was successfully updated." }
-        format.json { render :show, status: :ok, location: @article }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @article.update(article_params)
+          format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+          format.json { render :show, status: :ok, location: @article }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @article.errors, status: :unprocessable_entity }
+        end
       end
     end
-  end
   end
 
   # DELETE /articles/1 or /articles/1.json
@@ -65,22 +63,23 @@ class ArticlesController < ApplicationController
     if @article.user != current_user
       redirect_to  root_path
     else
-    @article.destroy
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
-      format.json { head :no_content }
+      @article.destroy
+      respond_to do |format|
+        format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
-  end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def article_params
-      params.require(:article).permit(:title, :body, :image).merge(user_id: current_user.id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def article_params
+    params.require(:article).permit(:title, :body, :image).merge(user_id: current_user.id)
+  end
 end
