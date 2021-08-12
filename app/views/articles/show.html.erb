@@ -4,7 +4,11 @@
  <%= render "devise/shared/header" %>
 <div class="card-text" style="padding-left: 30%;">
 <% if @article.image.attached? %>
+<<<<<<< Updated upstream
 <%= image_tag @article.image,width:"40%",height:"20%" %>
+=======
+<%= image_tag @article.image,width:"60%",height:"35%" %>
+>>>>>>> Stashed changes
 <% else %>
 <%= image_tag("画像.png",class:"m-largeNoteWrapper__image",width:"60%",height:"100%") %>
 <% end %>
