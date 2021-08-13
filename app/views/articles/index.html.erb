@@ -10,7 +10,10 @@
 <% end %></figure>
             <h2 class="card-title"><%= link_to article.title,article_path(article.id),style:"text-decoration: none; font-weight: 800; font-size: 20px; color: black; " %></h2>
             <p>
-         
+            <div class="small">
+                <%= article.user.creator %>
+               <br>
+                <%= l article.created_at %></div>
         </a>
     </section>
     <% end %>

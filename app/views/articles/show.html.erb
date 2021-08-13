@@ -10,10 +10,10 @@
 <br><div class="cardtitle" style="text-decoration: none; font-weight: 800; font-size: 20px; color: black; ">
 <%=  markdown(@article.title).html_safe %></div>
 <br>
-                <%=image_tag("画像.png",width:"30px",height:"30px",style:"border-radius: 50%") %>
-                <%= @article.user.creator %>
-                <br>
-                <%= l @article.created_at %>
+                <%#=image_tag("画像.png",width:"30px",height:"30px",style:"border-radius: 50%") %>
+                <%#= @article.user.creator %>
+               
+                <%#= l @article.created_at %>
 <div class="cardtext"  >
   <%= markdown(@article.body).html_safe %></div>
 <br>
