@@ -1,8 +1,4 @@
 <%= render "devise/shared/header" %>
-<script
-  type="text/javascript"
-  src="https://checkout.pay.jp/"
-  class="payjp-button"
-  data-key="YOUR_PUBLIC_KEY"
-  data-submit-text="カード番号を登録して閉じる"
-></script>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application' %>
+  <script src="https://js.pay.jp/" , type="text/javascript"></script>
