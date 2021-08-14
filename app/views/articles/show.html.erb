@@ -1,22 +1,21 @@
 <p id="notice"><%#= notice %></p>
-
 <p>
- <%= render "devise/shared/header" %>
+<%= render "devise/shared/header" %>
 <div class="card-text" style="padding-left: 30%;">
 <% if @article.image.attached? %>
-<<<<<<< Updated upstream
-<%= image_tag @article.image,width:"40%",height:"20%" %>
-=======
-<%= image_tag @article.image,width:"60%",height:"35%" %>
->>>>>>> Stashed changes
+<%= image_tag @article.image,width:"53%",height:"28%" %>
 <% else %>
 <%= image_tag("画像.png",class:"m-largeNoteWrapper__image",width:"60%",height:"100%") %>
 <% end %>
 <br><div class="cardtitle" style="text-decoration: none; font-weight: 800; font-size: 20px; color: black; ">
-<%=  @article.title %></div>
+<%=  markdown(@article.title).html_safe %></div>
 <br>
-<div class="cardtext" style="text-decoration: none;" >
-<%=  @article.body %></div>
+                <%#=image_tag("画像.png",width:"30px",height:"30px",style:"border-radius: 50%") %>
+                <%#= @article.user.creator %>
+               
+                <%#= l @article.created_at %>
+<div class="cardtext"  >
+  <%= markdown(@article.body).html_safe %></div>
 <br>
 <div class="album py-5 bg-light" style="width: 240px;height: 64px;padding-left: 16px;">
 <%= link_to '戻る', root_path, method: :get, class: "btn btn-sm btn-outline-secondary" %>
@@ -24,4 +23,8 @@
 <%= link_to '編集', edit_article_path, method: :get, class: "btn btn-sm btn-outline-secondary" %>
 <%= link_to '削除', article_path, method: :delete, class:'btn btn-sm btn-outline-secondary' %>
 <% end %>
+</div>
+<div class="btn-outline-secondary2" style="color: white; font-size: 25px; font-weight: bold; border: none; border-radius: 1%; background-color: rgb(3, 170, 120); width: 60%; height: 40px; text-align: center">
+    <%= link_to "購読する",addresses_path ,style: "text-decoration: none;"%>
+  </div>
 </div>
