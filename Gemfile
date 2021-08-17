@@ -74,3 +74,5 @@ gem 'react-rails'
 gem 'redcarpet', '~> 2.3.0'
 gem 'payjp'
 gem 'react-rails'
+gem 'webpacker', '~> 5.0'
+gem "react_on_rails"
