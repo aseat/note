@@ -78,3 +78,4 @@ gem 'webpacker', '~> 5.0'
 gem "react_on_rails"
 gem 'mini_racer', platforms: :ruby
 gem 'carrierwave', '~> 1.0'
+gem 'mini_racer', platforms: :ruby
