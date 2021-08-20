@@ -79,3 +79,6 @@ gem "react_on_rails"
 gem 'mini_racer', platforms: :ruby
 gem 'carrierwave', '~> 1.0'
 gem 'mini_racer', platforms: :ruby
+gem 'mini_racer', platforms: :ruby
+gem 'cocoon'
+gem "jquery-rails"

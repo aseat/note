@@ -8,7 +8,7 @@
       </div>
       </header>
 <h2>
-<%= react_component('HelloMessage') %>
+
 </h2>
   <%= form_with model: @article, local: true do |f| %>
   <% if article.errors.any? %>
@@ -37,9 +37,43 @@
         <div class="field form-group1">
        <form>
   <label>
-    タグ:
-    <input type="text" name="name" />
-  </label>
+    <%= javascript_pack_tag 'new' %>
+   <div id="form_area">
+<script>
+var i = 1 ;
+function addForm() {
+  var input_data = document.createElement('input');
+  input_data.type = 'text';
+  input_data.id = 'inputform_' + i;
+  input_data.placeholder = 'タグ-' + i;
+  var parent = document.getElementById('form_area');
+  parent.appendChild(input_data);
+
+  var button_data = document.createElement('button');
+  button_data.id = i;
+  button_data.onclick = function(){deleteBtn(this);}
+  button_data.innerHTML = '削除';
+  var input_area = document.getElementById(input_data.id);
+  parent.appendChild(button_data);
+
+  i++ ;
+}
+
+function deleteBtn(target) {
+  var target_id = target.id;
+  var parent = document.getElementById('form_area');
+  var ipt_id = document.getElementById('inputform_' + target_id);
+  var tgt_id = document.getElementById(target_id);
+  parent.removeChild(ipt_id);
+  parent.removeChild(tgt_id);	
+}
+</script>
+
+
+  <input type="text" id="inputform_0" placeholder="タグ-0">
+  <button id="0" onclick="deleteBtn(this)">削除</button>
+</div>
+<input type="button" value="タグ追加" onclick="addForm()">
   
 </form>
         </div>

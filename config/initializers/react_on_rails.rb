@@ -4,7 +4,6 @@
 # for many more options.
 
 ReactOnRails.configure do |config|
-  
   # This configures the script to run to build the production assets by webpack. Set this to nil
   # if you don't want react_on_rails building this file for you.
   # If nil, then the standard rails/webpacker assets:precompile will run
