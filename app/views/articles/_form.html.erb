@@ -7,6 +7,9 @@
        <%= link_to image_tag("note.png",width:"120px",height:"45px"), root_path%> 
       </div>
       </header>
+<h2>
+<%= react_component('HelloMessage', name: 'Mike') %>
+</h2>
   <%= form_with model: @article, local: true do |f| %>
   <% if article.errors.any? %>
     <div id="error_explanation">
@@ -31,26 +34,21 @@
         <div class="field form-group1">
             <%= f.text_area :body, id:"inputFile",placeholder:"ご自由にお書きください。",class:"form-control2" ,type:"text", id:"article_title",rows:"5", cols:"30",style:"border: 0px none; font-size: 18px;" %>
         </div>
- <form method="post" action="confirm">
-      <div class="form-block" id="form_block[0]">
-        <!-- Closeボタン -->
-        <span class="close" title="Close" style="display: none;">-</span>
-
-      
-        <p>Memo:<textarea name="memo[0]" id="memo[0]" rows="3"></textarea></p>
-      </div>
-
-      <!-- Addボタン -->
-      <div class="form-block" id="form_add">
-        <span class="add" title="Add">+</span>
-      </div>
-    </form>
-
+        <div class="field form-group1">
+       <form>
+  <label>
+    タグ:
+    <input type="text" name="name" />
+  </label>
+  
+</form>
+        </div>
            <div class="field"> 
         <a class="col-4 d-flex justify-content-end align-items-center">
         <%=link_to 'キャンセル', root_path, class:"btn btn-sm btn-outline-secondary4" %>
          <%= f.submit "投稿",class:"btn btn-sm btn-outline-secondary4"%>
     </a>
     </div>
+
      </div>
 <% end %>
