@@ -79,3 +79,8 @@ a.card-link {
   font-size: 10px;
   color: #818181;
 }
+
+input {
+  display: block;
+  margin-top: 10px;
+}

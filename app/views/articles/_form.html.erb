@@ -7,6 +7,9 @@
        <%= link_to image_tag("note.png",width:"120px",height:"45px"), root_path%> 
       </div>
       </header>
+<h2>
+
+</h2>
   <%= form_with model: @article, local: true do |f| %>
   <% if article.errors.any? %>
     <div id="error_explanation">
@@ -21,7 +24,8 @@
   <% end %>
 <div class="center" style="padding-left: 30%;">
 <label class="upload-img-btn">
-   <%= f.file_field :image, id:"inputFile",style:"background-image:url(画像アイコン.png);"%>
+   <%= f.file_field :image, id:"inputFile"%>
+   
 </label>
 <div class="field form-group">
           <%= f.text_area :title, placeholder:"記事タイトル",id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"4", cols:"30",style:"border: 0px none; font-size: 40px;" %>
@@ -30,11 +34,51 @@
         <div class="field form-group1">
             <%= f.text_area :body, id:"inputFile",placeholder:"ご自由にお書きください。",class:"form-control2" ,type:"text", id:"article_title",rows:"5", cols:"30",style:"border: 0px none; font-size: 18px;" %>
         </div>
+        <div class="field form-group1">
+       <form>
+  <label>
+
+   <div id="form_area">
+<script>
+var i = 1 ;
+function addForm() {
+  var input_data = document.createElement('input');
+  input_data.type = 'text';
+  input_data.id = 'inputform_' + i;
+  input_data.placeholder = 'タグ-' + i;
+  var parent = document.getElementById('form_area');
+  parent.appendChild(input_data);
+
+  var button_data = document.createElement('button');
+  button_data.id = i;
+  button_data.onclick = function(){deleteBtn(this);}
+  button_data.innerHTML = '削除';
+  var input_area = document.getElementById(input_data.id);
+  parent.appendChild(button_data);
+
+  i++ ;
+}
+
+function deleteBtn(target) {
+  var target_id = target.id;
+  var parent = document.getElementById('form_area');
+  var ipt_id = document.getElementById('inputform_' + target_id);
+  var tgt_id = document.getElementById(target_id);
+  parent.removeChild(ipt_id);
+  parent.removeChild(tgt_id);	
+  i-- ;
+}
+</script>
+<%= f.submit "タグ追加", id:"inputform_0",type:"button" ,onclick:"addForm()"%>
+  <%= f.text_area :tag, id:"inputform_0",placeholder:"タグ-0",type:"input",onclick:"addForm()"%>
+  </div>
+  
            <div class="field"> 
         <a class="col-4 d-flex justify-content-end align-items-center">
         <%=link_to 'キャンセル', root_path, class:"btn btn-sm btn-outline-secondary4" %>
          <%= f.submit "投稿",class:"btn btn-sm btn-outline-secondary4"%>
     </a>
     </div>
+
      </div>
 <% end %>
