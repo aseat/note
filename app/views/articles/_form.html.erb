@@ -10,7 +10,7 @@
 <h2>
 
 </h2>
-  <%= form_with model: @article, local: true do |f| %>
+  <%= form_with model: @article, html: {multipart: true}, local: true do |f| %>
   <% if article.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -35,9 +35,8 @@
             <%= f.text_area :body, id:"inputFile",placeholder:"ご自由にお書きください。",class:"form-control2" ,type:"text", id:"article_title",rows:"5", cols:"30",style:"border: 0px none; font-size: 18px;" %>
         </div>
         <div class="field form-group1">
-       <form>
+
   <label>
-    <%= javascript_pack_tag 'new' %>
    <div id="form_area">
 <script>
 var i = 1 ;
@@ -67,15 +66,26 @@ function deleteBtn(target) {
   parent.removeChild(ipt_id);
   parent.removeChild(tgt_id);	
 }
+
+  function readUploadImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(input).next()
+          .attr('src', e.target.result)
+          .width(100);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
 </script>
 
 
-  <input type="text" id="inputform_0" placeholder="タグ-0">
-  <button id="0" onclick="deleteBtn(this)">削除</button>
+<%= f.text_area :content, type:"text"  ,placeholder:"タグ-0",class:"form-control2" ,type:"text", id:"article_tag" %> 
+<%= f.submit :content,type:"button", value:"タグ追加" ,onclick:"addForm()",remote: true%> 
+
+
 </div>
-<input type="button" value="タグ追加" onclick="addForm()">
-  
-</form>
         </div>
            <div class="field"> 
         <a class="col-4 d-flex justify-content-end align-items-center">
