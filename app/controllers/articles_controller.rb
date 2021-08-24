@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @tag = @article.tags.build
     if request.xhr?
       respond_to do |format|
         format.js
@@ -78,6 +79,6 @@ class ArticlesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def article_params
-    params.require(:article).permit(:title, :body, :image, :content).merge(user_id: current_user.id)
+    params.require(:article).permit(:title, :body, :image, :content, tags_attributes: [:id, :tag, :_destroy]).merge(user_id: current_user.id)
   end
 end

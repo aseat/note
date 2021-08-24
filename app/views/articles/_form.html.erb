@@ -80,9 +80,16 @@ function deleteBtn(target) {
   }
 </script>
 
+  
+  
+    <%#= render "articles/article_tag_fields", f: t %>
 
-<%= f.text_area :content, type:"text"  ,placeholder:"タグ-0",class:"form-control2" ,type:"text", id:"article_tag" %> 
-<%= f.submit :content,type:"button", value:"タグ追加" ,onclick:"addForm()",remote: true%> 
+<%= f.fields_for :tags do |form| %>
+  <%= render "tag_fields", f: form %>
+<% end %>
+<p>
+<%= link_to_add_association "追加ボタン", f, :tags,class:"btn btn-sm btn-outline-secondary4"%>
+
 
 
 </div>

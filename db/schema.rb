@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_005844) do
+ActiveRecord::Schema.define(version: 2021_08_23_055524) do
 
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -60,10 +60,11 @@ ActiveRecord::Schema.define(version: 2021_08_23_005844) do
   end
 
   create_table "tags", charset: "utf8", force: :cascade do |t|
-    t.string "text"
-    t.integer "article_id"
+    t.text "tag"
+    t.bigint "article_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_tags_on_article_id"
   end
 
   create_table "tweets", charset: "utf8", force: :cascade do |t|
@@ -94,5 +95,6 @@ ActiveRecord::Schema.define(version: 2021_08_23_005844) do
   add_foreign_key "addresses", "articles"
   add_foreign_key "addresses", "users"
   add_foreign_key "articles", "users"
+  add_foreign_key "tags", "articles"
   add_foreign_key "tweets", "users"
 end
