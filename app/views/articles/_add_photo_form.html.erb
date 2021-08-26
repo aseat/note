@@ -1,0 +1,3 @@
+<%=fields_for "article[tags_attributes][#{Time.now.to_i}]" do |ff|%>
+<%=ff.file_field :image, onchange: "readUploadImage(this)"%>
+<%=image_tag ''%>

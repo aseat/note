@@ -10,7 +10,7 @@
 <h2>
 
 </h2>
-  <%= form_with model: @article, local: true do |f| %>
+  <%= form_with model: @article, html: {multipart: true}, local: true do |f| %>
   <% if article.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -35,9 +35,8 @@
             <%= f.text_area :body, id:"inputFile",placeholder:"ご自由にお書きください。",class:"form-control2" ,type:"text", id:"article_title",rows:"5", cols:"30",style:"border: 0px none; font-size: 18px;" %>
         </div>
         <div class="field form-group1">
-       <form>
-  <label>
 
+  <label>
    <div id="form_area">
 <script>
 var i = 1 ;
@@ -66,13 +65,34 @@ function deleteBtn(target) {
   var tgt_id = document.getElementById(target_id);
   parent.removeChild(ipt_id);
   parent.removeChild(tgt_id);	
-  i-- ;
 }
+
+  function readUploadImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(input).next()
+          .attr('src', e.target.result)
+          .width(100);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
 </script>
-<%= f.submit "タグ追加", id:"inputform_0",type:"button" ,onclick:"addForm()"%>
-  <%= f.text_area :tag, id:"inputform_0",placeholder:"タグ-0",type:"input",onclick:"addForm()"%>
-  </div>
+
   
+  
+
+<%= f.fields_for :tags do |f| %>
+  <%= render "tag_fields", f: f %>
+<% end %>
+<p>
+  <div class="links"><%= link_to_add_association "追加ボタン", f, :tags,class:"btn btn-sm btn-outline-secondary4"%></div>
+
+
+
+</div>
+        </div>
            <div class="field"> 
         <a class="col-4 d-flex justify-content-end align-items-center">
         <%=link_to 'キャンセル', root_path, class:"btn btn-sm btn-outline-secondary4" %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_14_022641) do
+ActiveRecord::Schema.define(version: 2021_08_26_013731) do
 
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -49,14 +49,31 @@ ActiveRecord::Schema.define(version: 2021_08_14_022641) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+  create_table "article_bodies", charset: "utf8", force: :cascade do |t|
+    t.text "body"
+    t.text "image"
+    t.text "order"
+    t.bigint "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_article_bodies_on_article_id"
+  end
+
   create_table "articles", charset: "utf8", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.text "tag"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "tags", charset: "utf8", force: :cascade do |t|
+    t.string "text"
+    t.bigint "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_tags_on_article_id"
   end
 
   create_table "tweets", charset: "utf8", force: :cascade do |t|
@@ -86,6 +103,8 @@ ActiveRecord::Schema.define(version: 2021_08_14_022641) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "articles"
   add_foreign_key "addresses", "users"
+  add_foreign_key "article_bodies", "articles"
   add_foreign_key "articles", "users"
+  add_foreign_key "tags", "articles"
   add_foreign_key "tweets", "users"
 end

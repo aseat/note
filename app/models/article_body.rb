@@ -1,0 +1,2 @@
+class ArticleBody < ApplicationRecord
+end
