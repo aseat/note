@@ -77,3 +77,4 @@ gem 'react-rails'
 gem 'webpacker', '~> 5.0'
 gem "react_on_rails"
 gem 'cocoon'
+gem "jquery-rails"

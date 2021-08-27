@@ -13,7 +13,7 @@
   <%= form_with model: @article, html: {multipart: true}, local: true do |f| %>
   <% if article.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+      <h2><%#= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
 
       <ul>
         <% article.errors.each do |error| %>
@@ -37,59 +37,25 @@
         <div class="field form-group1">
 
   <label>
-   <div id="form_area">
-<script>
-var i = 1 ;
-function addForm() {
-  var input_data = document.createElement('input');
-  input_data.type = 'text';
-  input_data.id = 'inputform_' + i;
-  input_data.placeholder = 'タグ-' + i;
-  var parent = document.getElementById('form_area');
-  parent.appendChild(input_data);
-
-  var button_data = document.createElement('button');
-  button_data.id = i;
-  button_data.onclick = function(){deleteBtn(this);}
-  button_data.innerHTML = '削除';
-  var input_area = document.getElementById(input_data.id);
-  parent.appendChild(button_data);
-
-  i++ ;
-}
-
-function deleteBtn(target) {
-  var target_id = target.id;
-  var parent = document.getElementById('form_area');
-  var ipt_id = document.getElementById('inputform_' + target_id);
-  var tgt_id = document.getElementById(target_id);
-  parent.removeChild(ipt_id);
-  parent.removeChild(tgt_id);	
-}
-
-  function readUploadImage(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $(input).next()
-          .attr('src', e.target.result)
-          .width(100);
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-</script>
+ 
 
   
   
-
+<div id="tags">
 <%= f.fields_for :tags do |f| %>
-  <%= render "tag_fields", f: f %>
+  <%#= render "tag_fields", f: f %>
 <% end %>
 <p>
-  <div class="links"><%= link_to_add_association "追加ボタン", f, :tags,class:"btn btn-sm btn-outline-secondary4"%></div>
+  <%= link_to_add_association "追加ボタン", f, :tags,class:"btn btn-sm btn-outline-secondary4",data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'after'}%>
+</div>
 
-
+<div id="article_bodies">
+<%= f.fields_for :article_bodies do |f| %>
+  <%#= render "article_bodies_fields", f: f %>
+<% end %>
+<p>
+  <%= link_to_add_association "追加ボタン", f, :tags,class:"btn btn-sm btn-outline-secondary4",data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'after'}%>
+</div>
 
 </div>
         </div>
@@ -98,7 +64,6 @@ function deleteBtn(target) {
         <%=link_to 'キャンセル', root_path, class:"btn btn-sm btn-outline-secondary4" %>
          <%= f.submit "投稿",class:"btn btn-sm btn-outline-secondary4"%>
     </a>
-    </div>
-
+  
      </div>
 <% end %>

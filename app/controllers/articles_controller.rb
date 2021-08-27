@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: [:index, :show]
+
   # GET /articles or /articles.json
   def index
     @article = Article.includes(:user).order('created_at DESC')
@@ -13,12 +14,8 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
-    @tag = @article.tags.build
-    if request.xhr?
-      respond_to do |format|
-        format.js
-      end
-    end
+    @tags = @article.tags.build
+    @article_bodies = @article.article_body.build
   end
 
   # GET /articles/1/edit
@@ -79,6 +76,6 @@ class ArticlesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def article_params
-    params.require(:article).permit(:title, :body, :image, tags_attributes: [:id, :text, :_destroy]).merge(user_id: current_user.id)
+    params.require(:article).permit(:title, :body, :image, tags_attributes: [:id, :text, :_destroy],article_bodies_attributes: [:id, :body,:image, :_destroy]).merge(user_id: current_user.id)
   end
 end
