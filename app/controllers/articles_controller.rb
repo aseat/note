@@ -15,7 +15,12 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     @tags = @article.tags.build
-    @article_bodies = @article.article_body.build
+    @article_bodies = @article.article_bodies.build
+    if request.xhr?
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 
   # GET /articles/1/edit
@@ -72,10 +77,10 @@ class ArticlesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_article
     @article = Article.find(params[:id])
-  end
+    end
 
   # Only allow a list of trusted parameters through.
   def article_params
-    params.require(:article).permit(:title, :body, :image, tags_attributes: [:id, :text, :_destroy],article_bodies_attributes: [:id, :body,:image, :_destroy]).merge(user_id: current_user.id)
+    params.require(:article).permit(:title,:images, tags_attributes: [:id, :text, :_destroy]).merge(user_id: current_user.id)
   end
 end

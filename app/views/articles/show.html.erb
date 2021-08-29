@@ -2,8 +2,8 @@
 <p>
 <%= render "devise/shared/header" %>
 <div class="card-text" style="padding-left: 30%;">
-<% if @article.image.attached? %>
-<%= image_tag @article.image,width:"53%",height:"28%" %>
+<% if @article.images.attached? %>
+<%= image_tag @article.images,width:"53%",height:"28%" %>
 <% else %>
 <%= image_tag("画像.png",class:"m-largeNoteWrapper__image",width:"60%",height:"100%") %>
 <% end %>
@@ -14,8 +14,11 @@
                 <%#= @article.user.creator %>
                
                 <%#= l @article.created_at %>
-<div class="cardtext"  >
-  <%= markdown(@article.body).html_safe %></div>
+<div class="cardtext">
+
+<%#= markdown(@article.article_bodies.body).html_safe %>
+
+  <%#= markdown(@article.body).html_safe %></div>
 <br>
 <div class="album py-5 bg-light" style="width: 240px;height: 64px;padding-left: 16px;">
 <%= link_to '戻る', root_path, method: :get, class: "btn btn-sm btn-outline-secondary" %>

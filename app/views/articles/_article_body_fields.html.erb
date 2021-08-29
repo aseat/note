@@ -1,0 +1,9 @@
+<div class="nested-fields">
+ <%= f.text_field :body,class:"form-control4",placeholder:"ご自由にお書きください。" ,type:"text", id:"article_title",rows:"10", cols:"50",style:" font-size: 30px;"%>
+ <p>
+
+ <%= f.file_field :images, name: 'article_body[images][]', id: 'article_image'%>
+
+ <p>
+<%= link_to_remove_association "削除", f ,class:"btn btn-sm btn-outline-secondary4"%>
+</div>
