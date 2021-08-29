@@ -20,6 +20,7 @@
 
   <%#= markdown(@article.body).html_safe %></div>
 <br>
+
 <div class="album py-5 bg-light" style="width: 240px;height: 64px;padding-left: 16px;">
 <%= link_to '戻る', root_path, method: :get, class: "btn btn-sm btn-outline-secondary" %>
 <% if user_signed_in? && current_user.id == @article.user.id %>

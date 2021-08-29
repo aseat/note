@@ -30,6 +30,7 @@
               <%= f.text_area :title, placeholder:"記事タイトル",id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"4", cols:"30",style:"border: 0px none; font-size: 40px;" %>
             </div>
             <p>
+
               <div class="field form-group1">
                 <div id="article_bodies">
 <%# <%= f.fields_for :article_bodies do |article_body| %>
@@ -43,12 +44,15 @@
               </div>
               <div class="field form-group1"> <label>
 
+  
 <div id="tags">
-<%= f.fields_for :tags do |tag| %>
-  <%= render "tag_fields", f: tag %>
-<% end %>
 
-  <td><%= link_to_add_association "タグ追加", f, :tags,class:"btn btn-sm btn-outline-secondary4"%> </td>
+<div id="detail-association-insertion-point"></div>
+
+<%= f.fields_for :tags do |f| %>
+  <%= render "tag_fields", f: f %>
+<% end %>
+<td><%= link_to_add_association "タグ追加", f, :tags,class:"btn btn-sm btn-outline-secondary4"%> </td>
 </div>
 
 

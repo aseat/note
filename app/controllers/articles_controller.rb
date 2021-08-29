@@ -14,8 +14,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
-    @tags = @article.tags.build
-    @article_bodies = @article.article_bodies.build
+   @article.tags.build
     if request.xhr?
       respond_to do |format|
         format.js
