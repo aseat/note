@@ -79,3 +79,4 @@ gem "react_on_rails"
 gem 'jquery-rails'
 gem 'cocoon'
 gem 'nested_form_fields'
+gem "carrierwave"

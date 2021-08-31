@@ -2,8 +2,9 @@
 <p>
 <%= render "devise/shared/header" %>
 <div class="card-text" style="padding-left: 30%;">
-<% if @article.images.attached? %>
-<%= image_tag @article.images,width:"53%",height:"28%" %>
+<% if @article.image.attached? %>
+<%= image_tag @article.image,width:"53%",height:"28%" %>
+
 <% else %>
 <%= image_tag("画像.png",class:"m-largeNoteWrapper__image",width:"60%",height:"100%") %>
 <% end %>

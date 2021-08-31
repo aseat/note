@@ -1,8 +1,8 @@
 <div class="nested-fields">
- <%= f.text_field :body,class:"form-control4",placeholder:"ご自由にお書きください。" ,type:"text", id:"article_title",rows:"10", cols:"50",style:" font-size: 30px;"%>
+ <%= f.text_field :body,class:"form-control4",placeholder:"ご自由にお書きください。" ,id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"2", cols:"40",style:"font-size: 30px;" %>
  <p>
 
- <%= f.file_field :images, name: 'article_body[images][]', id: 'article_image'%>
+ <%= f.file_field :images, multiple: true %>
 
  <p>
 <%= link_to_remove_association "削除", f ,class:"btn btn-sm btn-outline-secondary4"%>

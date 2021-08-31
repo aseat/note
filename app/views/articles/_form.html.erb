@@ -23,21 +23,25 @@
         </div>
         <% end %>
           <div class="center" style="padding-left: 30%;"> <label class="upload-img-btn">
-   <%= f.file_field :images, name: 'article[images][]', id: 'article_image'%>
-   
+
+  <%= f.file_field :image %>
+
 </label>
             <div class="field form-group">
-              <%= f.text_area :title, placeholder:"記事タイトル",id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"4", cols:"30",style:"border: 0px none; font-size: 40px;" %>
+              <%= f.text_area :title, placeholder:"記事タイトル",id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"2", cols:"30",style:"border: 0px none; font-size: 30px;" %>
             </div>
             <p>
 
               <div class="field form-group1">
                 <div id="article_bodies">
-<%# <%= f.fields_for :article_bodies do |article_body| %>
-  <%#= render "article_body_fields", f: article_body %>
-<%# end %>
+<%= f.fields_for :article_bodies do |article_body| %>
+  <%= render "article_body_fields", f: article_body %>
+<% end %>
 <p>
-  <%#= link_to_add_association "+", f, :article_bodies,class:"btn btn-sm btn-outline-secondary4"%> 
+  <%= link_to_add_association "+", f, :article_bodies,class:"btn btn-sm btn-outline-secondary4",data: {
+  association_insertion_node: '#detail-association-insertion-point',
+  association_insertion_method: 'after'
+  }%> 
 </div> 
 
                 <%#= f.text_area :body, id:"inputFile",placeholder:"ご自由にお書きください。",class:"form-control2" ,type:"text", id:"article_title",rows:"5", cols:"30",style:"border: 0px none; font-size: 18px;" %>
