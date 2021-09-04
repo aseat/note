@@ -31,7 +31,6 @@ class ArticlesController < ApplicationController
   # POST /articles or /articles.json
   def create
     @article = Article.new(article_params)
-    binding.pry
     respond_to do |format|
       if @article.save
         format.html { redirect_to root_path, notice: 'Article was successfully created.' }

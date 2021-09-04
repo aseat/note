@@ -80,3 +80,4 @@ gem 'jquery-rails'
 gem 'cocoon'
 gem 'nested_form_fields'
 gem "carrierwave"
+gem 'em-websocket'
