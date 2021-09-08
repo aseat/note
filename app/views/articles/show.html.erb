@@ -30,6 +30,15 @@
 <% end %>
 </div>
 <div class="btn-outline-secondary2" style="color: white; font-size: 25px; font-weight: bold; border: none; border-radius: 1%; background-color: rgb(3, 170, 120); width: 60%; height: 40px; text-align: center">
-    <%= link_to "購読する",addresses_path ,style: "text-decoration: none;"%>
+    <%= link_to "購読する","#" ,style: "text-decoration: none;"%>
+   <form action="/pay" method="post">
+  <script
+    src="https://checkout.pay.jp/"
+    class="payjp-button"
+    data-key= "pk_test_052208a2aa46118d4ac742f6"
+    data-payjp="827cde0e3dd648d6d83c08b091b2b10c3c266e36">
+  </script>
+</form>
   </div>
+  
 </div>

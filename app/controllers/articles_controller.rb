@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  protect_from_forgery except: :pay
 
   # GET /articles or /articles.json
   def index
@@ -40,6 +41,16 @@ class ArticlesController < ApplicationController
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def pay
+    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    charge = Payjp::Charge.create(
+    amount: 300,
+    card: params['payjp-token'],
+    currency: 'jpy',
+    )
+    redirect_to root_path
   end
 
   # PATCH/PUT /articles/1 or /articles/1.json

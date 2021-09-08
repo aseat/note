@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_013731) do
+ActiveRecord::Schema.define(version: 2021_09_06_015807) do
 
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -68,6 +68,17 @@ ActiveRecord::Schema.define(version: 2021_08_26_013731) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
+  create_table "cards", charset: "utf8", force: :cascade do |t|
+    t.string "customer_id", null: false
+    t.string "token_id", null: false
+    t.bigint "user_id"
+    t.bigint "article_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_cards_on_article_id"
+    t.index ["user_id"], name: "index_cards_on_user_id"
+  end
+
   create_table "tags", charset: "utf8", force: :cascade do |t|
     t.string "text"
     t.bigint "article_id", null: false
@@ -105,6 +116,8 @@ ActiveRecord::Schema.define(version: 2021_08_26_013731) do
   add_foreign_key "addresses", "users"
   add_foreign_key "article_bodies", "articles"
   add_foreign_key "articles", "users"
+  add_foreign_key "cards", "articles"
+  add_foreign_key "cards", "users"
   add_foreign_key "tags", "articles"
   add_foreign_key "tweets", "users"
 end
