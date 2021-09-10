@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show edit update destroy]
+  before_action :set_article, only: %i[show edit update destroy pay]
   before_action :authenticate_user!, except: [:index, :show]
   protect_from_forgery except: :pay
+  require "payjp"
 
   # GET /articles or /articles.json
   def index
@@ -50,7 +51,7 @@ class ArticlesController < ApplicationController
     card: params['payjp-token'],
     currency: 'jpy',
     )
-    redirect_to root_path
+    redirect_to action: :done
   end
 
   # PATCH/PUT /articles/1 or /articles/1.json

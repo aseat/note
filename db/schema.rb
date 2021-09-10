@@ -69,14 +69,11 @@ ActiveRecord::Schema.define(version: 2021_09_06_015807) do
   end
 
   create_table "cards", charset: "utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "customer_id", null: false
-    t.string "token_id", null: false
-    t.bigint "user_id"
-    t.bigint "article_id"
+    t.string "card_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["article_id"], name: "index_cards_on_article_id"
-    t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
   create_table "tags", charset: "utf8", force: :cascade do |t|
@@ -116,8 +113,6 @@ ActiveRecord::Schema.define(version: 2021_09_06_015807) do
   add_foreign_key "addresses", "users"
   add_foreign_key "article_bodies", "articles"
   add_foreign_key "articles", "users"
-  add_foreign_key "cards", "articles"
-  add_foreign_key "cards", "users"
   add_foreign_key "tags", "articles"
   add_foreign_key "tweets", "users"
 end

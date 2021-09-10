@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :tags
     resources :article_bodies
     collection do
-      get  'article/:id'=>  'articles#purchase', as: 'article'
+      get  'article/:id'=>  'articles#show', as: 'article'
       post 'pay/:id'=>   'articles#pay', as: 'pay'
       get  'done'=>      'articles#done', as: 'done'
     end
