@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
+
   end
 
   # GET /articles/new
@@ -45,13 +46,16 @@ class ArticlesController < ApplicationController
   end
 
   def pay
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-    charge = Payjp::Charge.create(
-    amount: 300,
-    card: params['payjp-token'],
-    currency: 'jpy',
+    Payjp.api_key = 'sk_test_71c136029357931ccc79ff72'
+    Payjp::Charge.create(
+      amount: 3700,
+      card: params['payjp-token'],
+      currency: 'jpy'
     )
-    redirect_to action: :done
+    if @article.update(buyer_id: current_user.id)
+      redirect_to controller: "articles", action: 'show'
+    else
+    end
   end
 
   # PATCH/PUT /articles/1 or /articles/1.json
@@ -89,10 +93,11 @@ class ArticlesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_article
     @article = Article.find(params[:id])
+    @article_bodies=ArticleBody.find(params[:id])
     end
 
   # Only allow a list of trusted parameters through.
   def article_params
-    params.require(:article).permit(:title,:image, tags_attributes: [:id, :text, :_destroy], article_bodies_attributes: [:id,  :body,{images: []},:_destroy]).merge(user_id: current_user.id)
+    params.require(:article).permit(:title,:image,:buyer_id,:item_id, tags_attributes: [:id, :text, :_destroy], article_bodies_attributes: [:id,  :body,{images: []},:_destroy]).merge(user_id: current_user.id)
   end
 end

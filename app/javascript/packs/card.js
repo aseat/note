@@ -1,27 +1,27 @@
 const payjp = () => {
-  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY); 
-  const form = document.getElementById("card_form"); 
-  form.addEventListener("submit", function(e) {
+  Payjp.setPublicKey("pk_test_052208a2aa46118d4ac742f6"); 
+  const form = document.getElementById("入力フォームのid"); 
+  form.addEventListener("submit", function(e)  {
     e.preventDefault();
     const card = { 
-      number: document.getElementById("number").value,
-      name: document.getElementById("name").value,
-      cvc: document.getElementById("cvc").value,
-      exp_month: document.getElementById("exp_month").value,
-      exp_year: `20${document.getElementById("exp_year").value}`,
+      number: フォームに入力されたカード番号の値,
+      name: フォームに入力されたカード名義人の値,
+      cvc: フォームに入力されたセキュリティコードの値,
+      exp_month: フォームに入力された月の値,
+      exp_year: `20${フォームに入力された年の値}`,
     };
     Payjp.createToken(card, function(status, response) {
       if (status === 200) {
         const token = response.id;
         const tokenObj = `<input value=${token} name='token_id' type="hidden">`; 
-        const cardForm = document.getElementById("card_form");
+        const cardForm = document.getElementById("入力フォームのid");
         cardForm.insertAdjacentHTML("beforeend", tokenObj);
-        document.getElementById("number").removeAttribute("name");
-        document.getElementById("name").removeAttribute("name");
-        document.getElementById("cvc").removeAttribute("name");
-        document.getElementById("exp_month").removeAttribute("name");
-        document.getElementById("exp_year").removeAttribute("name");
-        document.getElementById("card_form").submit();
+        document.getElementById("カード番号の入力フォームのid").removeAttribute("name");
+        document.getElementById("カード名義人の入力フォームのid").removeAttribute("name");
+        document.getElementById("セキュリティコードの入力フォームのid").removeAttribute("name");
+        document.getElementById("月の入力フォームのid").removeAttribute("name");
+        document.getElementById("年の入力フォームのid").removeAttribute("name");
+        document.getElementById("入力フォームのid").submit();
       } else {
         alert("カード情報が正しくありません")
       } 
