@@ -101,4 +101,3 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title,:image,:buyer_id,:item_id, tags_attributes: [:id, :text, :_destroy], article_bodies_attributes: [:id,  :body,{images: []},:_destroy]).merge(user_id: current_user.id)
   end
 end
-0----00-
