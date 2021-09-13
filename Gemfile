@@ -75,3 +75,14 @@ gem 'redcarpet', '~> 2.3.0'
 gem 'payjp'
 gem 'react-rails'
 gem 'webpacker', '~> 5.0'
+gem "react_on_rails"
+gem 'jquery-rails'
+gem 'cocoon'
+gem 'nested_form_fields'
+gem "carrierwave"
+gem 'em-websocket'
+gem 'payjp'
+gem 'dotenv-rails'
+group :production do
+  gem 'unicorn', '5.4.1'
+end
