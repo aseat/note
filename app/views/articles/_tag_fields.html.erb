@@ -1,0 +1,57 @@
+<div class="nested-fields">
+ 
+<%# フォーム移動 %>
+<script>
+ document.querySelectorAll('.drag-list li').forEach (elm => {
+	elm.ondragstart = function () {
+		event.dataTransfer.setData('text/plain', event.target.id);
+	};
+	elm.ondragover = function () {
+		event.preventDefault();
+		let rect = this.getBoundingClientRect();
+		if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+			//マウスカーソルの位置が要素の半分より上
+			this.style.borderTop = '2px solid blue';
+			this.style.borderBottom = '';
+		} else {
+			//マウスカーソルの位置が要素の半分より下
+			this.style.borderTop = '';
+			this.style.borderBottom = '2px solid blue';
+		}
+	};
+	elm.ondragleave = function () {
+		this.style.borderTop = '';
+		this.style.borderBottom = '';
+	};
+	elm.ondrop = function () {
+		event.preventDefault();
+		let id = event.dataTransfer.getData('text/plain');
+		let elm_drag = document.getElementById(id);
+
+		let rect = this.getBoundingClientRect();
+		if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+			//マウスカーソルの位置が要素の半分より上
+			this.parentNode.insertBefore(elm_drag, this);
+		} else {
+			//マウスカーソルの位置が要素の半分より下
+			this.parentNode.insertBefore(elm_drag, this.nextSibling);
+		}
+		this.style.borderTop = '';
+		this.style.borderBottom = '';
+	};
+});
+ </script>
+
+
+<ul class="drag-list">
+	<li id="item1" draggable="true"><%= f.text_field :text,placeholder:"タグ",class:"form-control2",rows:"10", cols:"60"%></li>
+
+	<li style="border:0;list-style-type:none;">&nbsp;</li>
+</ul>
+
+<%# フォーム移動 %>
+ 
+
+ <p>
+<%= link_to_remove_association "削除", f ,class:"btn btn-sm btn-outline-secondary4"%>
+</div>

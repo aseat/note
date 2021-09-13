@@ -1,0 +1,75 @@
+<div class="nested-fields">
+ <%# フォーム移動 %>
+
+ <script>
+ document.querySelectorAll('.drag-list li').forEach (elm => {
+	elm.ondragstart = function () {
+		event.dataTransfer.setData('text/plain', event.target.id);
+	};
+	elm.ondragover = function () {
+		event.preventDefault();
+		let rect = this.getBoundingClientRect();
+		if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+			//マウスカーソルの位置が要素の半分より上
+			this.style.borderTop = '2px solid blue';
+			this.style.borderBottom = '';
+		} else {
+			//マウスカーソルの位置が要素の半分より下
+			this.style.borderTop = '';
+			this.style.borderBottom = '2px solid blue';
+		}
+	};
+	elm.ondragleave = function () {
+		this.style.borderTop = '';
+		this.style.borderBottom = '';
+	};
+	elm.ondrop = function () {
+		event.preventDefault();
+		let id = event.dataTransfer.getData('text/plain');
+		let elm_drag = document.getElementById(id);
+
+		let rect = this.getBoundingClientRect();
+		if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+			//マウスカーソルの位置が要素の半分より上
+			this.parentNode.insertBefore(elm_drag, this);
+		} else {
+			//マウスカーソルの位置が要素の半分より下
+			this.parentNode.insertBefore(elm_drag, this.nextSibling);
+		}
+		this.style.borderTop = '';
+		this.style.borderBottom = '';
+	};
+});
+
+function imgPreView(event, targetId) {
+  var file = event.target.files[0];
+  var reader = new FileReader();
+  var preview = document.getElementById(targetId);
+  var previewImage = document.getElementById("previewImage-"+targetId);
+ 
+  if(previewImage != null) {
+    preview.removeChild(previewImage);
+  }
+ 
+  reader.onload = function(event) {
+     var img = document.createElement("img");
+     img.setAttribute("src", reader.result);
+     img.setAttribute("id", "previewImage-"+targetId);
+     preview.appendChild(img);
+  };
+ 
+  reader.readAsDataURL(file);
+}
+ </script>
+ 
+ <ul class="drag-list">
+	<li id="item1" draggable="true"><%= f.text_field :body,class:"form-control3",placeholder:"ご自由にお書きください。" ,id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"2", cols:"40",style:"font-size: 30px; width: 380px;" %></li>
+<br><li id="item1" draggable="true"><%= f.file_field :images, multiple: true ,onChange:"imgPreView(event, 'preview1')"%><div id="preview1" style="width:60px; height:60px;"></div></li>
+	<li style="border:0;list-style-type:none;">&nbsp;</li>
+</ul>
+
+<%# フォーム移動 %>
+ <p>
+ <p>
+<%= link_to_remove_association "削除", f ,class:"btn btn-sm btn-outline-secondary4"%>
+</div>

@@ -1,84 +1,98 @@
 <!DOCTYPE html>
 <header>
-<div class="container">
-  <header class="blog-header py-3">
-    <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 ">
-       <%= link_to image_tag("note.png",width:"120px",height:"45px"), root_path%> 
-      </div>
-      </header>
-<h2>
-
-</h2>
-  <%= form_with model: @article, local: true do |f| %>
-  <% if article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
-
-      <ul>
-        <% article.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div class="center" style="padding-left: 30%;">
-<label class="upload-img-btn">
-   <%= f.file_field :image, id:"inputFile"%>
-   
-</label>
-<div class="field form-group">
-          <%= f.text_area :title, placeholder:"記事タイトル",id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"4", cols:"30",style:"border: 0px none; font-size: 40px;" %>
-      </div>
-      <p>
-        <div class="field form-group1">
-            <%= f.text_area :body, id:"inputFile",placeholder:"ご自由にお書きください。",class:"form-control2" ,type:"text", id:"article_title",rows:"5", cols:"30",style:"border: 0px none; font-size: 18px;" %>
+  <div class="container">
+    <header class="blog-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 ">
+          <%= link_to image_tag("note.png",width:"120px",height:"45px"), root_path%>
         </div>
-        <div class="field form-group1">
-       <form>
-  <label>
+    </header>
+    <h2> </h2>
+    <%= form_with model: @article, html: {multipart: true}, local: true do |f| %>
+      <% if article.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%#= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+          <ul>
+            <% article.errors.each do |error| %>
+              <li>
+                <%= error.full_message %>
+              </li>
+              <% end %>
+          </ul>
+        </div>
+        <% end %>
+          <div class="center" style="padding-left: 30%;"> <label class="upload-img-btn">
 
-   <div id="form_area">
-<script>
-var i = 1 ;
-function addForm() {
-  var input_data = document.createElement('input');
-  input_data.type = 'text';
-  input_data.id = 'inputform_' + i;
-  input_data.placeholder = 'タグ-' + i;
-  var parent = document.getElementById('form_area');
-  parent.appendChild(input_data);
+  <%= f.file_field :image %>
 
-  var button_data = document.createElement('button');
-  button_data.id = i;
-  button_data.onclick = function(){deleteBtn(this);}
-  button_data.innerHTML = '削除';
-  var input_area = document.getElementById(input_data.id);
-  parent.appendChild(button_data);
-
-  i++ ;
-}
-
-function deleteBtn(target) {
-  var target_id = target.id;
-  var parent = document.getElementById('form_area');
-  var ipt_id = document.getElementById('inputform_' + target_id);
-  var tgt_id = document.getElementById(target_id);
-  parent.removeChild(ipt_id);
-  parent.removeChild(tgt_id);	
-  i-- ;
-}
-</script>
-<%= f.submit "タグ追加", id:"inputform_0",type:"button" ,onclick:"addForm()"%>
-  <%= f.text_area :tag, id:"inputform_0",placeholder:"タグ-0",type:"input",onclick:"addForm()"%>
-  </div>
-  
-           <div class="field"> 
-        <a class="col-4 d-flex justify-content-end align-items-center">
-        <%=link_to 'キャンセル', root_path, class:"btn btn-sm btn-outline-secondary4" %>
-         <%= f.submit "投稿",class:"btn btn-sm btn-outline-secondary4"%>
-    </a>
-    </div>
-
-     </div>
-<% end %>
+</label>
+            <div class="field form-group">
+              <%= f.text_area :title, placeholder:"記事タイトル",id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"2", cols:"30",style:"border: 0px none; font-size: 30px;" %>
+            </div>
+            <p>
+              <div class="field form-group1">
+                <div class="article_bodies">
+                  <script>
+                    document.querySelectorAll('.drag-list li').forEach (elm => {
+                    	elm.ondragstart = function () {
+                    		event.dataTransfer.setData('text/plain', event.target.id);
+                    	};
+                    	elm.ondragover = function () {
+                    		event.preventDefault();
+                    		let rect = this.getBoundingClientRect();
+                    		if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+                    			//マウスカーソルの位置が要素の半分より上
+                    			this.style.borderTop = '2px solid blue';
+                    			this.style.borderBottom = '';
+                    		} else {
+                    			//マウスカーソルの位置が要素の半分より下
+                    			this.style.borderTop = '';
+                    			this.style.borderBottom = '2px solid blue';
+                    		}
+                    	};
+                    	elm.ondragleave = function () {
+                    		this.style.borderTop = '';
+                    		this.style.borderBottom = '';
+                    	};
+                    	elm.ondrop = function () {
+                    		event.preventDefault();
+                    		let id = event.dataTransfer.getData('text/plain');
+                    		let elm_drag = document.getElementById(id);
+                    
+                    		let rect = this.getBoundingClientRect();
+                    		if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+                    			//マウスカーソルの位置が要素の半分より上
+                    			this.parentNode.insertBefore(elm_drag, this);
+                    		} else {
+                    			//マウスカーソルの位置が要素の半分より下
+                    			this.parentNode.insertBefore(elm_drag, this.nextSibling);
+                    		}
+                    		this.style.borderTop = '';
+                    		this.style.borderBottom = '';
+                    	};
+                    });
+                  </script>
+                  <%= f.fields_for :article_bodies do |article_body| %>
+                    <%= render "article_body_fields", f: article_body %>
+                      <% end %>
+                        <p>
+                          <td>
+                            <%= link_to_add_association "+", f, :article_bodies,class:"btn btn-sm btn-outline-secondary4"%>
+                          </td>
+                </div>
+                <%= f.fields_for :tags do |f| %>
+                  <%= render "tag_fields", f: f %>
+                    <% end %>
+                      <td>
+                        <%= link_to_add_association "タグ追加", f, :tags,class:"btn btn-sm btn-outline-secondary4"%>
+                      </td>
+              </div>
+          </div>
+          </div>
+          <div class="field" style="padding-left: 30%;">
+            <%=link_to 'キャンセル', root_path, class:"btn btn-sm btn-outline-secondary4" %>
+              <%= f.submit "投稿",class:"btn btn-sm btn-outline-secondary4"%>
+                </a>
+          </div>
+          <% end %>
