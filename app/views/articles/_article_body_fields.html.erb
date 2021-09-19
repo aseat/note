@@ -64,7 +64,7 @@ function imgPreView(event, targetId) {
  
  <ul class="drag-list">
 	<li id="item1" draggable="true"><%= f.text_field :body,class:"form-control3",placeholder:"ご自由にお書きください。" ,id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"2", cols:"40",style:"font-size: 30px; width: 380px;" %></li>
-<br><li id="item1" draggable="true"><%= f.file_field :images, multiple: true ,onChange:"imgPreView(event, 'preview1')"%><div id="preview1" style="width:60px; height:60px;"></div></li>
+<br><li id="item1" draggable="true"><%= f.file_field :images, multiple: true ,onChange:"imgPreView(event, 'preview1')"%><div id="preview1"></div></li>
 	<li style="border:0;list-style-type:none;">&nbsp;</li>
 </ul>
 

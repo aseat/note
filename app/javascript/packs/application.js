@@ -8,4 +8,4 @@ require("@rails/activestorage").start()
 require('jquery')
 require('../preview')  
 //require ('card')
-//import 'cocoon-js';
+import 'cocoon-js';
