@@ -31,78 +31,67 @@
               <%= f.text_area :title, placeholder:"記事タイトル",id:"inputFile",class:"form-control4" ,type:"text", id:"article_title",rows:"2", cols:"30",style:"border: 0px none; font-size: 30px;" %>
             </div>
             <p>
-
               <div class="field form-group1">
                 <div class="article_bodies">
-<script>
- document.querySelectorAll('.drag-list li').forEach (elm => {
-	elm.ondragstart = function () {
-		event.dataTransfer.setData('text/plain', event.target.id);
-	};
-	elm.ondragover = function () {
-		event.preventDefault();
-		let rect = this.getBoundingClientRect();
-		if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
-			//マウスカーソルの位置が要素の半分より上
-			this.style.borderTop = '2px solid blue';
-			this.style.borderBottom = '';
-		} else {
-			//マウスカーソルの位置が要素の半分より下
-			this.style.borderTop = '';
-			this.style.borderBottom = '2px solid blue';
-		}
-	};
-	elm.ondragleave = function () {
-		this.style.borderTop = '';
-		this.style.borderBottom = '';
-	};
-	elm.ondrop = function () {
-		event.preventDefault();
-		let id = event.dataTransfer.getData('text/plain');
-		let elm_drag = document.getElementById(id);
-
-		let rect = this.getBoundingClientRect();
-		if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
-			//マウスカーソルの位置が要素の半分より上
-			this.parentNode.insertBefore(elm_drag, this);
-		} else {
-			//マウスカーソルの位置が要素の半分より下
-			this.parentNode.insertBefore(elm_drag, this.nextSibling);
-		}
-		this.style.borderTop = '';
-		this.style.borderBottom = '';
-	};
-});
- </script>
-
-
-<%= f.fields_for :article_bodies do |article_body| %>
- <%= render "article_body_fields", f: article_body %>
-<% end %>
-<p>
- <td> <%= link_to_add_association "+", f, :article_bodies,class:"btn btn-sm btn-outline-secondary4"%> </td>
-  
-</div> 
-
-
-<%= f.fields_for :tags do |f| %>
- <%= render "tag_fields", f: f %>
-<% end %>
-<td><%= link_to_add_association "タグ追加", f, :tags,class:"btn btn-sm btn-outline-secondary4"%> </td>
-</div>
-
-
-</div>
-        </div>
-           <div class="field" style="padding-left: 30%;"> 
-        
-        <%=link_to 'キャンセル', root_path, class:"btn btn-sm btn-outline-secondary4" %>
-         <%= f.submit "投稿",class:"btn btn-sm btn-outline-secondary4"%>
-    </a>
-  
-     </div>
-
-
-
-
-<% end %>
+                  <script>
+                    document.querySelectorAll('.drag-list li').forEach (elm => {
+                    	elm.ondragstart = function () {
+                    		event.dataTransfer.setData('text/plain', event.target.id);
+                    	};
+                    	elm.ondragover = function () {
+                    		event.preventDefault();
+                    		let rect = this.getBoundingClientRect();
+                    		if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+                    			//マウスカーソルの位置が要素の半分より上
+                    			this.style.borderTop = '2px solid blue';
+                    			this.style.borderBottom = '';
+                    		} else {
+                    			//マウスカーソルの位置が要素の半分より下
+                    			this.style.borderTop = '';
+                    			this.style.borderBottom = '2px solid blue';
+                    		}
+                    	};
+                    	elm.ondragleave = function () {
+                    		this.style.borderTop = '';
+                    		this.style.borderBottom = '';
+                    	};
+                    	elm.ondrop = function () {
+                    		event.preventDefault();
+                    		let id = event.dataTransfer.getData('text/plain');
+                    		let elm_drag = document.getElementById(id);
+                    
+                    		let rect = this.getBoundingClientRect();
+                    		if ((event.clientY - rect.top) < (this.clientHeight / 2)) {
+                    			//マウスカーソルの位置が要素の半分より上
+                    			this.parentNode.insertBefore(elm_drag, this);
+                    		} else {
+                    			//マウスカーソルの位置が要素の半分より下
+                    			this.parentNode.insertBefore(elm_drag, this.nextSibling);
+                    		}
+                    		this.style.borderTop = '';
+                    		this.style.borderBottom = '';
+                    	};
+                    });
+                  </script>
+                  <%= f.fields_for :article_bodies do |article_body| %>
+                    <%= render "article_body_fields", f: article_body %>
+                      <% end %>
+                        <p>
+                          <td>
+                            <%= link_to_add_association "+", f, :article_bodies,class:"btn btn-sm btn-outline-secondary4"%>
+                          </td>
+                </div>
+                <%= f.fields_for :tags do |f| %>
+                  <%= render "tag_fields", f: f %>
+                    <% end %>
+                      <td>
+                        <%= link_to_add_association "タグ追加", f, :tags,class:"btn btn-sm btn-outline-secondary4"%>
+                      </td>
+              </div>
+          </div></div>
+          <div class="field" style="padding-left: 30%;">
+            <%=link_to 'キャンセル', root_path, class:"btn btn-sm btn-outline-secondary4" %>
+              <%= f.submit "投稿",class:"btn btn-sm btn-outline-secondary4"%>
+                </a>
+          </div>
+          <% end %>

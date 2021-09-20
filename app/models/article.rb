@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  has_one :card, dependent: :destroy
+
   has_many      :tags, dependent: :destroy
   has_many      :article_bodies, dependent: :destroy
   has_one :order, dependent: :destroy
