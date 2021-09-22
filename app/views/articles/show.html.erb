@@ -18,9 +18,15 @@
                       <%= markdown(@article_bodies.body).html_safe %>
                         <%else%>
                           <%= markdown(@article_bodies.body.truncate(10)).html_safe %>
+                          <%= form_tag action: :pay, method: :post do %>
+                  <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_052208a2aa46118d4ac742f6"></script>
+                  <%end%>
                             <%end%>
                               <%else%>
                                 <%= markdown(@article_bodies.body.truncate(10)).html_safe %>
+                                 <%= form_tag action: :pay, method: :post do %>
+                  <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_052208a2aa46118d4ac742f6"></script>
+                  <%end%>
                                   <%end%>
                 </div> <br>
                 <div class="album py-5 bg-light" style="width: 240px;height: 64px;padding-left: 16px;">
@@ -30,7 +36,5 @@
                         <%= link_to '削除', article_path, method: :delete, class:'btn btn-sm btn-outline-secondary' %>
                           <% end %>
                 </div>
-                <%= form_tag action: :pay, method: :post do %>
-                  <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_052208a2aa46118d4ac742f6"></script>
-                  <%end%>
+                
     </div>
