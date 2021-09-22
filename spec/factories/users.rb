@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :user do
-    creator              {"tarou"}
-    noteid                 {"_mm"}
-    password              {"12345678@c"}
-    encrypted_password    {"12345678@c"}
-    email           {"sample@gmail.com"}
+    creator              {'test'}
+    noteid                {'mm_'}
+    email                 {'test@example'}
+    password              {'00000000@m'}
+    password_confirmation {password}
   end
 end
