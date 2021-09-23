@@ -15,4 +15,4 @@ RSpec.describe Tag, type: :model do
       expect(tag.errors.full_messages).to include()
   end
  end
-end
+end 
